@@ -20,10 +20,7 @@ public class MovieRepository {
         movieDirectorPair.put(director , movies);
     }
 
-//      if (studentData.containsKey(student)) {
-//        return Optional.of(studentData.get(student));
-//    }
-//        return Optional.empty();
+
     public Optional<Movie> getMovie(String movie) {
         if(movieMap.containsKey(movie)){
             return Optional.of(movieMap.get(movie)) ;
@@ -46,15 +43,24 @@ public class MovieRepository {
     }
 
     public List<String> getAllMovies() {
-        retunr
+      return new ArrayList<>(movieMap.keySet());
     }
 
     public void deleteDirector(String director) {
+        directorMap.remove(director) ;
+        movieDirectorPair.remove(director) ;
     }
 
     public void deleteMovie(String movie) {
+        movieMap.remove(movie) ;
     }
 
     public List<String> getAllDirector() {
+        return new ArrayList<>(directorMap.keySet()) ;
+    }
+
+    public void deleteAllDirector(String director) {
+        directorMap.clear();
+        movieDirectorPair.clear();
     }
 }
